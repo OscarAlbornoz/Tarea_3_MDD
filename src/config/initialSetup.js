@@ -1,3 +1,5 @@
+require('dotenv').config();
+console.log(process.env.DB_PASSWORD);
 require('reflect-metadata');
 const AppDataSource = require('./db');
 const Usuario = require('../entities/Usuario');

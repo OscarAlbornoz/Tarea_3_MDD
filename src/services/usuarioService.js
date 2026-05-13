@@ -23,9 +23,8 @@ const crearUsuario = async (datosUsuario) => {
  * @returns {Array} Array de todos los usuarios
  */
 const obtenerTodosLosUsuarios = async () => {
-  // TODO: Implementar la obtención de todos los usuarios
-  // Ayudita: Usa usuarioRepository.find()
-  return [];
+  const usuarios = await usuarioRepository.find();
+  return usuarios;
 };
 
 /**
@@ -34,9 +33,8 @@ const obtenerTodosLosUsuarios = async () => {
  * @returns {Object|null} El usuario encontrado o null
  */
 const obtenerUsuarioPorId = async (id) => {
-  // TODO: Implementar la obtención de un usuario por ID
-  // Ayudita: Usa usuarioRepository.findOneBy({ id })
-  return null;
+  const usuario = await usuarioRepository.findOneBy({ id });
+  return usuario;
 };
 
 /**
@@ -46,10 +44,8 @@ const obtenerUsuarioPorId = async (id) => {
  * @returns {Object|null} El usuario actualizado o null si no existe
  */
 const actualizarUsuario = async (id, datosActualizados) => {
-  // TODO: Implementar la actualización de un usuario
-  // Ayudita: Primero usa usuarioRepository.update(id, datosActualizados)
-  // Y luego retorna el usuario actualizado usando obtenerUsuarioPorId(id)
-  return null;
+  await usuarioRepository.update(id, datosActualizados);
+  return await obtenerUsuarioPorId(id);
 };
 
 /**
@@ -58,9 +54,8 @@ const actualizarUsuario = async (id, datosActualizados) => {
  * @returns {boolean} true si se eliminó, false si no existe
  */
 const eliminarUsuario = async (id) => {
-  // TODO: Implementar la eliminación de un usuario
-  // Ayudita: Usa usuarioRepository.delete(id) y verifica result.affected
-  return false;
+  const result = await usuarioRepository.delete(id);
+  return result.affected > 0;
 };
 
 module.exports = {
