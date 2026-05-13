@@ -46,13 +46,12 @@ const createUsuarioSchema = Joi.object({
     })
 });
 
-// Esquema para actualizar un usuario (todos los campos opcionales)
-// TODO: Por completar cuando implementes PATCH
 const updateUsuarioSchema = Joi.object({
-  // Ayudita: Usa las mismas validaciones de arriba pero con required() removido
-  // Ejemplo: 
-  // nombre: Joi.string().alphanum().min(3).max(30).optional()
-}).min(1); // Al menos debe enviarse un campo
+  nombre: Joi.string().alphanum().min(3).max(30).optional(),
+  apellido: Joi.string().alphanum().min(3).max(30).optional(),
+  email: Joi.string().email().optional(),
+  edad: Joi.number().integer().min(0).optional()
+}).min(1);
 
 module.exports = {
   createUsuarioSchema,
